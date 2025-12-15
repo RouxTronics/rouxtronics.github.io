@@ -1,5 +1,5 @@
 ---
-date: "{{date}}{{time}}+0200"
+date: "{{date}} {{time}}+0200"
 title:
 description:
 aurhors:
