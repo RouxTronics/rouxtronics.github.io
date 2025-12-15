@@ -1,1 +1,4 @@
-readme 2n add
+# RouxTronics
+
+![300](./assets/common/logo.png)
+
