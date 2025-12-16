@@ -1,4 +1,4 @@
 # RouxTronics
 
-![300](./assets/common/logo.png)
+![300](</assets/commons/logo.png>)
 
