@@ -26,5 +26,10 @@ package-lock.json
 _sass/vendors
 assets/js/dist
 
-# obsidian
+# Personally Added
+
+## obsidian
 .obsidian
+
+## Private 
+_locked_content/
