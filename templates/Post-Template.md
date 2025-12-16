@@ -1,16 +1,17 @@
 ---
-title: 
+title:
 date: "{{date}} {{time:HH:mm:ss}}+0200"
-description: 
-aurhors: [RouxTronics]
+description:
+aurhors:
+  - RouxTronics
 categories: []
 published: false
-locked: false
-toc: false
-commons: false
+locked: true
+toc: true
+commons: true
 pin: false
-math: false
-mermaid: false
+math: true
+mermaid: true
 image: /assets/img/folder/image
-tags: 
+tags:
 ---
