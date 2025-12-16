@@ -41,15 +41,12 @@
 
 ## Admontion
 
-```ad-tip-
-tis is an tip
-```
+> [!tip]
+> tis is an tip
 
-```ad-warning-
-title:warning-test
-its a WARNING
-
-```
+> [!warning] warning-test
+> its a WARNING
+> 
 
 # Chripy - Jeykell & Github
 
@@ -74,17 +71,14 @@ its a WARNING
 > Negative potential consequences of an action.
 {: .prompt-danger }
 
-# Admontion , chripy and Github  
+# Admontion , chripy and Github  - TESTER
 > has auto convert but for whole vault
 
-```ad-tip
-> [!TIP]
-> Optional information to help a user be more successful.
-{: .prompt-tip }
-```
+> [!tip]
+> 
+> > Optional information to help a user be more successful.
+> {: .prompt-tip }
 
-```ad-warning
-> [!WARNING]  
-> Critical content demanding immediate user attention due to potential risks.
-{: .prompt-warning }
-```
+> [!warning]
+> > Critical content demanding immediate user attention due to potential risks.
+> {: .prompt-warning }
