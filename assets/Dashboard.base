@@ -1,0 +1,56 @@
+views:
+  - type: table
+    name: Posts
+    filters:
+      or:
+        - file.folder == "_posts"
+    order:
+      - file.name
+      - description
+      - published
+      - title
+      - tags
+      - categories
+    columnSize:
+      note.description: 163
+      note.title: 121
+      note.tags: 138
+  - type: table
+    name: Drafts
+    filters:
+      and:
+        - file.folder == "_drafts"
+  - type: table
+    name: Published
+    filters:
+      and:
+        - file.folder == "_posts"
+        - published == true
+    order:
+      - file.name
+      - description
+      - published
+      - title
+      - tags
+      - categories
+    columnSize:
+      note.description: 163
+      note.title: 121
+      note.tags: 138
+  - type: table
+    name: Locked
+    filters:
+      and:
+        - file.folder == "_posts"
+        - published != true
+    order:
+      - file.name
+      - description
+      - published
+      - title
+      - tags
+      - categories
+    columnSize:
+      note.description: 163
+      note.title: 121
+      note.tags: 138
