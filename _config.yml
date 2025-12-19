@@ -200,6 +200,11 @@ defaults:
       layout: page
       permalink: /:title/
   - scope:
+      path: "" # Static pages (all .md/.html files outside _posts and collections)
+      type: pages
+    values:
+      layout: page
+  - scope:
       path: "assets/img/favicons"
     values:
       swcache: true
