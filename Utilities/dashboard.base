@@ -1,0 +1,24 @@
+filters:
+  and:
+    - file.ext == "md"
+views:
+  - type: dash-table-view
+    name: Posts
+    filters:
+      and:
+        - file.folder == "_posts"
+    order:
+      - file.name
+      - title
+      - published
+  - type: dash-table-view
+    name: Drafts
+    filters:
+      and:
+        - file.folder == "_drafts"
+  - type: dash-table-view
+    name: Published
+    filters:
+      and:
+        - file.folder == "_posts"
+        - published == true

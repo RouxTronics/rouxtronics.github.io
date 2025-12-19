@@ -30,6 +30,8 @@ assets/js/dist
 
 ## obsidian
 .obsidian
+.trash
 
-## Private 
-_locked_content/
+## Private
+_drafts
+
