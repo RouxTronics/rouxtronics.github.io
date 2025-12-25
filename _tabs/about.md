@@ -26,7 +26,7 @@ Most content is written first in **Obsidian** and published here with minimal ch
 
 - **Obsidian** for local-first knowledge management  
 - **Git + GitHub Pages (Chirpy theme)** for publishing  
-- Linux-based environments (Kali / Arch)  
+- Linux-based environments (Kali /Arch)  
 - Notes are version-controlled and reproducible
 
 ---

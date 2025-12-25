@@ -200,10 +200,10 @@ defaults:
       layout: page
       permalink: /:title/
   - scope:
-      path: "" # Static pages (all .md/.html files outside _posts and collections)
-      type: pages
+      path: "zettelkasten" # Static pages in zettelkasten directory
     values:
       layout: page
+      toc: true # Display TOC column on pages
   - scope:
       path: "assets/img/favicons"
     values:

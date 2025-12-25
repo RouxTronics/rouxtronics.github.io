@@ -5,7 +5,7 @@ description:
 authors:
   - RouxTronics
 categories: []
-layout:
+layout: page
 published: false
 toc: true
 commons: true

@@ -2,23 +2,25 @@ filters:
   and:
     - file.ext == "md"
 views:
-  - type: dash-table-view
+  - type: table
     name: Posts
     filters:
       and:
-        - file.folder == "_posts"
+        - file.folder.contains("_posts")
     order:
       - file.name
       - title
       - published
-  - type: dash-table-view
+    columnSize:
+      note.title: 257
+  - type: table
     name: Drafts
     filters:
       and:
         - file.folder == "_drafts"
-  - type: dash-table-view
+  - type: table
     name: Published
     filters:
       and:
-        - file.folder == "_posts"
+        - file.folder.contains("_posts")
         - published == true
