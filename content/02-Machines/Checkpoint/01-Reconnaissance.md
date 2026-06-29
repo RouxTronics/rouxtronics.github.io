@@ -1,5 +1,4 @@
 ---
-title: Reconnaissance
 date: 2026-06-25 02:25
 tags:
 ---

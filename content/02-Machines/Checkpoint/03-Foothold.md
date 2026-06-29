@@ -1,4 +1,4 @@
-## Prepare the Malicious VSIX Extension
+# Prepare the Malicious VSIX Extension
 
 ### Create the payload directory
 

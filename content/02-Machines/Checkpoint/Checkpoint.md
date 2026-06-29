@@ -1,5 +1,5 @@
 ---
-title: Checkpoint - HTB Machine [Windows, Medium]
+title: Checkpoint
 date: 2026-06-17 14:21
 description:
 platform: HTB
