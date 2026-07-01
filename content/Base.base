@@ -1,5 +1,11 @@
+filters:
+  and:
+    - file.hasProperty("platform")
 views:
-  - type: table
+  - type: cards
     name: Table
     order:
       - file.name
+      - difficulty
+      - os
+    image: note.image
