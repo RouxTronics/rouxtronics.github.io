@@ -1,7 +1,7 @@
 filters:
   and:
-    - file.folder == "Bases"
     - file.basename != "HOME"
+    - file.ext == "base"
 views:
   - type: cards
     name: Table

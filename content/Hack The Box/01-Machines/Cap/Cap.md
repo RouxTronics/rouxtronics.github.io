@@ -12,7 +12,7 @@ os:
   - Linux
 difficulty:
   - Easy
-image: /HTB/01-Machines/Cap/attachments/Cap.png
+image: ./attachments/Cap.png
 tags:
   - privesc/python
   - linux

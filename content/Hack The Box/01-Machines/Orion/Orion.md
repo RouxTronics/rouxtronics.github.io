@@ -22,6 +22,7 @@ completed: true
 # Synopsis
 
 <img src="./attachments/Orion.png" width="100" height="100">
+![[./attachments/Orion.png]]
 
 | Machine    | Orion                                             |
 | ---------- | ------------------------------------------------- |
