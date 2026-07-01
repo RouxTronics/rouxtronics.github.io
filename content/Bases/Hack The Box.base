@@ -1,0 +1,14 @@
+filters:
+  and:
+    - platform == ["HTB"]
+views:
+  - type: cards
+    name: Machines
+    filters:
+      and:
+        - categories == ["Machines"]
+    order:
+      - file.name
+      - difficulty
+      - os
+    image: note.image

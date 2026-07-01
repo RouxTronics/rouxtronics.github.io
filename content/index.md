@@ -1,8 +1,12 @@
 ---
-title: Welcome to Quartz
+title: RouxTronics
+description: HTB, PicoCTF, and THM writeups — CPTS prep and lab notes.
 ---
 
-hello
+Security lab notes and machine writeups, tracked toward HTB CPTS certification.
 
+Field Manual & methodology → [STEMSecure](https://rouxtronics.gitbook.io/stemsecure)
 
-![](<./Base.base>)
+## Writeups
+
+![HOME](<./Bases/HOME.base>)

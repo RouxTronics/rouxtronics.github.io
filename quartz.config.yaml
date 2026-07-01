@@ -11,7 +11,8 @@ configuration:
   ignorePatterns:
     - private
     - templates
-    - .obsidian
+    - .obsidian 
+    - Bases
   theme:
     fontOrigin: googleFonts
     cdnCaching: true
@@ -239,7 +240,7 @@ plugins:
       display: mobile-only
   - source: github:quartz-community/bases-page
     enabled: true
-    options: {}
+    options: {image}
     order: 50
   - source: github:quartz-community/note-properties
     enabled: true

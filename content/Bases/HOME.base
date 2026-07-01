@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.folder == "Bases"
+    - file.basename != "HOME"
+views:
+  - type: cards
+    name: Table
+    order:
+      - file.basename
+    cardSize: 200
+    imageFit: contain
