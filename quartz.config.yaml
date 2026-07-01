@@ -56,7 +56,7 @@ plugins:
       theme:
         light: github-light
         dark: github-dark
-      keepBackground: false
+      keepBackground: true
     order: 20
   - source: github:quartz-community/obsidian-flavored-markdown
     enabled: true
@@ -186,7 +186,7 @@ plugins:
       position: beforeBody
       priority: 20
   - source: github:quartz-community/tag-list
-    enabled: false
+    enabled: true
     layout:
       position: beforeBody
       priority: 30
