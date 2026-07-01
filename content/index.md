@@ -9,4 +9,4 @@ Field Manual & methodology → [STEMSecure](https://rouxtronics.gitbook.io/stems
 
 ## Writeups
 
-![HOME](<./Bases/HOME.base>)
+![HOME](<./HOME.base>)
