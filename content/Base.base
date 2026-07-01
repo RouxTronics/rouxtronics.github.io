@@ -1,11 +1,10 @@
 filters:
   and:
-    - file.basename != "HOME"
     - file.ext == "base"
 views:
-  - type: cards
+  - type: table
     name: Table
     order:
-      - file.basename
+      - file.name
     cardSize: 200
     imageFit: contain

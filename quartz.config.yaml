@@ -12,7 +12,7 @@ configuration:
     - private
     - templates
     - .obsidian 
-    - Bases
+    - _MOC
   theme:
     fontOrigin: googleFonts
     cdnCaching: true
@@ -64,7 +64,7 @@ plugins:
     options:
       comments: true
       highlight: true
-      wikilinks: true
+      wikilinks: false
       callouts: true
       mermaid: true
       parseTags: true
@@ -87,7 +87,7 @@ plugins:
   - source: github:quartz-community/crawl-links
     enabled: true
     options:
-      markdownLinkResolution: shortest
+      markdownLinkResolution: relative
     order: 60
   - source: github:quartz-community/description
     enabled: true
@@ -240,12 +240,12 @@ plugins:
       display: mobile-only
   - source: github:quartz-community/bases-page
     enabled: true
-    options: {image}
+    options: {}
     order: 50
   - source: github:quartz-community/note-properties
     enabled: true
     options:
-      includeAll: false
+      includeAll: true
       includedProperties:
         - description
         - tags
