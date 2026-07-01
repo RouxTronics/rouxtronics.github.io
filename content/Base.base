@@ -2,7 +2,7 @@ filters:
   and:
     - file.hasProperty("platform")
 views:
-  - type: cards
+  - type: table
     name: Table
     order:
       - file.name
