@@ -7,7 +7,7 @@ categories: Machines
 status: Retired
 os: Linux
 difficulty: Easy
-image: /attachments/cap.png
+image: /hack-the-box/01-machines/cap/attachments/cap.png
 tags:
   - privesc/python
   - linux

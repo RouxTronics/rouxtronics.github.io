@@ -7,4 +7,7 @@ views:
     order:
       - file.name
       - difficulty
+      - os
     image: note.image
+    cardSize: 150
+    imageAspectRatio: 1

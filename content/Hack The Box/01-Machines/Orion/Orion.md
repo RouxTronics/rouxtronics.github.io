@@ -11,7 +11,7 @@ os:
   - Linux
 difficulty:
   - Easy
-image: orion/attachments/Orion.png
+image: /hack-the-box/01-machines/orion/attachments/orion.png
 tags:
   - CVE/2025-32432
   - CVE/2026-24061
