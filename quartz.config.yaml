@@ -11,8 +11,9 @@ configuration:
   ignorePatterns:
     - private
     - templates
-    - .obsidian 
-    - _MOC
+    - .obsidian
+    - .trash
+  additionalExtensions: [".base"]
   theme:
     fontOrigin: googleFonts
     cdnCaching: true
@@ -42,6 +43,9 @@ configuration:
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#b3aa0288"
 plugins:
+  transformers:
+  - source: "./quartz/plugins/transformers/relative-images.ts"
+      enabled: true
   - source: github:quartz-community/created-modified-date
     enabled: true
     options:
@@ -70,7 +74,7 @@ plugins:
       parseTags: true
       parseArrows: true
       parseBlockReferences: true
-      enableInHtmlEmbed: false
+      enableInHtmlEmbed: true
       enableYouTubeEmbed: true
       enableVideoEmbed: true
       enableCheckbox: true
@@ -81,9 +85,15 @@ plugins:
   - source: github:quartz-community/table-of-contents
     enabled: true
     order: 50
-    layout:
+    layout: 
       position: right
-      priority: 30
+      priority: 5             # Higher priority (lower number) places it above Graph View
+      display: desktop-only   # Hides it cleanly on mobile viewports
+    options:
+      maxDepth: 1
+      minEntries: 2
+      showByDefault: true
+      collapseByDefault: false
   - source: github:quartz-community/crawl-links
     enabled: true
     options:
@@ -117,7 +127,7 @@ plugins:
     enabled: false
   - source: github:quartz-community/unlisted-pages
     enabled: true
-    options: {}
+    options: 
     order: 45
   - source: github:quartz-community/encrypted-pages
     enabled: true
@@ -149,6 +159,10 @@ plugins:
     enabled: true
   - source: github:quartz-community/content-page
     enabled: true
+    options:
+      # Tell Quartz to process .base files exactly like .md files
+      additionalExtensions:
+        - .base
   - source: github:quartz-community/folder-page
     enabled: true
   - source: github:quartz-community/tag-page
@@ -158,6 +172,9 @@ plugins:
     layout:
       position: left
       priority: 50
+    options:
+      title: Explorer
+      folderDefaultState: collapsed
   - source: github:quartz-community/graph
     enabled: true
     layout:
@@ -245,13 +262,18 @@ plugins:
   - source: github:quartz-community/note-properties
     enabled: true
     options:
-      includeAll: true
+      includeAll: false
       includedProperties:
         - description
         - tags
         - aliases
+        - platform    # <-- Added
+        - os          # <-- Added
+        - difficulty  # <-- Added
+        - status      # <-- Added
+        - image
       excludedProperties: []
-      hidePropertiesView: false
+      hidePropertiesView: true
       delimiters: ---
       language: yaml
     order: 5
@@ -285,16 +307,41 @@ layout:
         beforeBody: []
         left: []
         right: []
-    content: {}
+    # --- UPDATED THIS BLOCK ---
+    content:
+      positions:
+        left:
+          - page-title
+          - search
+          - darkmode
+          - reader-mode
+          - explorer
+        beforeBody:
+          - breadcrumbs
+          - article-title
+          - content-meta
+          - tag-list
+        right:
+          - graph
+          - backlinks
     folder:
       exclude:
         - reader-mode
       positions:
-        right: []
+        right: 
+          - table-of-contents  # <-- ADD THIS
+          - graph
+          - backlinks
     tag:
       exclude:
         - reader-mode
       positions:
-        right: []
+        right: []              # Keeps the right sidebar empty on tag lists
     canvas: {}
-    bases: {}
+    bases:
+      exclude:
+        - reader-mode
+      positions:
+        right: 
+         - table-of-contents
+         - backlinks

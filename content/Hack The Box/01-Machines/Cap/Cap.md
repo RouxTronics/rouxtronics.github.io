@@ -2,17 +2,12 @@
 title: Cap
 date: 2025-08-24 17:30
 description: Linux - Easy - Retired
-platform:
-  - HTB
-categories:
-  - Machines
-status:
-  - Retired
-os:
-  - Linux
-difficulty:
-  - Easy
-image: ./attachments/Cap.png
+platform: HTB
+categories: Machines
+status: Retired
+os: Linux
+difficulty: Easy
+image: /attachments/cap.png
 tags:
   - privesc/python
   - linux
@@ -108,7 +103,7 @@ source .env && ping $TARGET -c4
 > [!tip] Verify connectivity before scanning. If ICMP is blocked, use `nmap -sn $TARGET` instead.
 
 ---
-## Reconnaissance
+# Reconnaissance
 
 ### Quick Scan
 
@@ -179,7 +174,8 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 **Alternative if wrong:** No sensitive data in older captures → enumerate vhosts/subdomains, look for Flask debug endpoints (`/console`), or test for SSTI in any user-controlled input field.
 
 
-## Enumeration
+# Enumeration
+# Enumeration
 
 ### DNS 
 

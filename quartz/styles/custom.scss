@@ -1,3 +1,81 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+// Fix squished community Table of Contents entries
+.toc {
+  max-height: 40vh;         // Prevents it from pushing down the Graph view
+  overflow-y: auto;         // Adds a clean scrollbar if it gets too long
+  ul {
+    list-type: none;
+    padding-left: 1rem !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  li {
+    line-height: 1.8 !important; // Forces vertical breathing room
+    padding: 0.2rem 0 !important; // Adds space between items
+    
+    a {
+      display: inline-block;
+      height: auto !important;
+    }
+  }
+}
+
+
+// Elevate Codeblocks and make them stand out
+code, pre {
+  background-color: #1c1c1f !important; // Slightly darker/distinct contrast tone
+  border: 1px solid #3a3a3d !important;  // Adds a crisp defining outline
+  border-radius: 6px !important;         // Softens the corners
+}
+
+pre {
+  padding: 1rem !important;
+  margin: 1.5rem 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important; // Adds deep structural depth
+  position: relative;
+
+  // Optional: Left border accent line color highlight
+  border-left: 4px solid #7b97aa !important; 
+  
+  // Clean custom scrollbar for horizontal code blocks
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #161618;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #393639;
+    border-radius: 4px;
+    &:hover {
+      background: #4e4e4e;
+    }
+  }
+}
+
+// Dynamically display frontmatter text path variables as actual images
+.note-properties, .properties-table {
+  tr:has(td:first-child:contains("image")) {
+    td:last-child {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      // Generates a responsive thumbnail render directly under the text string link
+      &::after {
+        content: "";
+        display: block;
+        width: 180px;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        background-image: inherit; /* Inherits background context if available */
+        border-radius: 6px;
+        border: 1px solid #393639;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

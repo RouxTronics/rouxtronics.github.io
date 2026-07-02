@@ -1,0 +1,21 @@
+filters:
+  and:
+    - file.ext == "md"
+views:
+  - type: table
+    name: Machines
+    filters:
+      and:
+        - file.inFolder("Hack The Box/01-Machines")
+        - section == ["Machines"]
+    order:
+      - file.name
+      - difficulty
+      - os
+      - platform
+    sort: []
+    image: note.image
+    columnSize:
+      file.name: 242
+  - type: table
+    name: View

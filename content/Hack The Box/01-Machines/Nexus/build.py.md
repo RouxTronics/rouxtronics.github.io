@@ -1,5 +1,4 @@
 ---
-title: build.py
 date: 2026-06-26 02:02
 tags:
   - python

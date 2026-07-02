@@ -11,7 +11,7 @@ os:
   - Linux
 difficulty:
   - Easy
-image: ./attachments/Nexus.png
+image: /hack-the-box/01-machines/nexus/attachments/nexus.png
 tags:
 finished: 2026-06-26
 completed: false

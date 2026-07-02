@@ -1,0 +1,10 @@
+filters:
+  and:
+    - platform == "HTB"
+views:
+  - type: cards
+    name: Table
+    order:
+      - file.name
+      - difficulty
+    image: note.image

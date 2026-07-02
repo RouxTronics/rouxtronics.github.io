@@ -11,10 +11,10 @@ os:
   - Linux
 difficulty:
   - Easy
-image: ./attachments/Orion.png
+image: orion/attachments/Orion.png
 tags:
-  - CVE/CVE-2025-32432
-  - CVE/CVE-2026-24061
+  - CVE/2025-32432
+  - CVE/2026-24061
   - privesc/telnet
 finished: 2026-06-25
 completed: true
@@ -22,7 +22,6 @@ completed: true
 # Synopsis
 
 <img src="./attachments/Orion.png" width="100" height="100">
-![[./attachments/Orion.png]]
 
 | Machine    | Orion                                             |
 | ---------- | ------------------------------------------------- |
@@ -100,18 +99,3 @@ Finally, privilege escalation is achieved by finding and exploiting a vulnerable
 ---
 
 # Table of Content 
-
-%% Begin Waypoint %%
-- [00-Pre-Engagement](<./00-Pre-Engagement.md>)
-- [01-Reconnaissance](<./01-Reconnaissance.md>)
-- [02.1-Enumeration](<./02.1-Enumeration.md>)
-- [02.2-Vulnerability-Analysis](<./02.2-Vulnerability-Analysis.md>)
-- [03-Exploitation](<./03-Exploitation.md>)
-- [04.1-Lateral-Movement](<./04.1-Lateral-Movement.md>)
-- [04.2-Privilege-Escalation](<./04.2-Privilege-Escalation.md>)
-- [05-Post-Exploitation](<./05-Post-Exploitation.md>)
-- [06-Remediation](<./06-Remediation.md>)
-
-%% End Waypoint %%
-
----

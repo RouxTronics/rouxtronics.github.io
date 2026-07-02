@@ -1,0 +1,23 @@
+filters:
+  and:
+    - file.folder == "_MOC"
+properties:
+  note.os:
+    displayName: OS
+views:
+  - type: cards
+    name: Hack The Box
+    groupBy:
+      property: categories
+      direction: ASC
+    order:
+      - file.name
+      - difficulty
+      - os
+    sort:
+      - property: os
+        direction: DESC
+    cardSize: 200
+    imageFit: contain
+    columnSize:
+      file.name: 168
