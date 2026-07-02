@@ -1,0 +1,16 @@
+filters:
+  and:
+    - platform == "HTB"
+views:
+  - type: cards
+    name: Machines
+    groupBy:
+      property: difficulty
+      direction: ASC
+    order:
+      - file.name
+      - difficulty
+      - os
+    image: note.image
+    cardSize: 90
+    imageAspectRatio: 1
