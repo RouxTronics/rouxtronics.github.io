@@ -43,8 +43,6 @@ configuration:
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#b3aa0288"
 plugins:
-  - source: "./quartz/plugins/transformers/relative-images.ts"
-    enabled: true
   - source: github:quartz-community/created-modified-date
     enabled: true
     options:
@@ -176,7 +174,7 @@ plugins:
       folderDefaultState: collapsed
       folderClickBehavior: link
   - source: github:quartz-community/graph
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 10
@@ -243,8 +241,8 @@ plugins:
     enabled: true
     options:
       links:
-        GitHub: https://github.com/jackyzha0/quartz
-        Discord Community: https://discord.gg/cRFFHYye7t
+        GitHub: https://github.com/RouxTronics
+        Gitbook: https://rouxtronics.gitbook.io/stemsecure
   - source: github:quartz-community/recent-notes
     enabled: false
   - source: github:quartz-community/spacer
@@ -322,7 +320,6 @@ layout:
           - content-meta
           - tag-list
         right:
-          - graph
           - backlinks
     folder:
       exclude:
@@ -330,7 +327,6 @@ layout:
       positions:
         right: 
           - table-of-contents  # <-- ADD THIS
-          - graph
           - backlinks
     tag:
       exclude:
