@@ -47,7 +47,7 @@ description: Security lab notes and machine writeups, tracked toward HTB CPTS ce
 
 | Platform                                    | Description                          |
 | ------------------------------------------- | ------------------------------------ |
-| [Hack The Box](<./Hack The Box/Index.base>) | Machine writeups, CPTS Academy notes |
+| [Hack The Box](<./Hack The Box/index.base>) | Machine writeups, CPTS Academy notes |
 | TryHackMe                                   | Room writeups                        |
 | PicoCTF                                     | Category-based CTF practice          |
 

@@ -1,0 +1,19 @@
+filters:
+  and:
+    - file.ext == "md"
+    - file.inFolder("Hack The Box/01-Machines")
+    - categories == ["Machines"]
+views:
+  - type: table
+    name: Table
+  - type: cards
+    name: Linux
+    filters:
+      and:
+        - os == ["Linux"]
+    image: note.image
+  - type: table
+    name: Windows
+    filters:
+      and:
+        - os == ["Windows"]
