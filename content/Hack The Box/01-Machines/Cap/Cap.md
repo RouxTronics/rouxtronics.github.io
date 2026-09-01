@@ -39,18 +39,6 @@ publish: false
 | Creators   | InfoSecJack              |
 | CVE(s)     | None (logic / misconfig) |
 
-
-```mermaid
-flowchart LR
-    A[Recon] --> B["Foothold: IDOR /data/0<br/>PCAP → plaintext FTP creds"]
-    B --> C["SSH as nathan
-    (credential reuse)"]
-    C --> D["PrivEsc: cap_setuid on python3.8
-    os.setuid(0) → root shell"]
-    D --> E[Pwned]
-    style E fill:#991b1b,stroke:#f87171,color:#fff
-```
-
 ---
 ## Skills Required 
 

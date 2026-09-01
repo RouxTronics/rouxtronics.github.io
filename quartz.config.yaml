@@ -285,7 +285,7 @@ plugins:
       subdir: plugin
     enabled: true
     options:
-      theme: hackthebox
+      theme: default
   - source: github:quartz-community/obsidian-plugin-excalidraw
     enabled: true
     options:
