@@ -9,8 +9,7 @@ views:
       direction: ASC
     order:
       - file.name
-      - difficulty
       - os
+    cardSize: 160
+    imageAspectRatio: 0.25
     image: note.image
-    cardSize: 90
-    imageAspectRatio: 1
